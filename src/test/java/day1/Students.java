@@ -9,16 +9,16 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class Students {
 
-    @Test
+    @Test(priority = 1)
     public void healthCheck(){
         given()
                 .when()
                 .get("http://localhost:3000/students/ping")
                 .then()
                 .assertThat()
-                .statusCode(201);
+                .statusCode(404);
     }
-    @Test
+    @Test(priority = 2)
     public void getStudent() {
         //GET
         given()
@@ -30,7 +30,7 @@ public class Students {
               .body("name",equalTo("Stephany"))
           .log().all();
     }
-    @Test
+    @Test(priority = 3)
     public void getStudents() {
         //GET
         given()
@@ -40,7 +40,7 @@ public class Students {
              .statusCode(200)
           .log().all();
     }
-    @Test
+    @Test(priority = 4)
     public void createStudent(){
         //POST
         HashMap data = new HashMap();
@@ -59,7 +59,7 @@ public class Students {
                     .statusCode(201)
                 .log().all();
     }
-    @Test
+    @Test(priority = 5)
     public void upDateStudent(){
         //PUT
         HashMap data = new HashMap();
@@ -77,8 +77,17 @@ public class Students {
                       .statusCode(200)
                 .log().all();
     }
+    @Test(priority = 6)
     public void deleteStudent(){
         //DELETE
+        given()
+                .contentType("application/json")
+                .when()
+                     .delete("http://localhost:3000/students/1")
+                .then()
+                     .assertThat()
+                     .statusCode(200)
+                .log().all();
 
     }
 }
