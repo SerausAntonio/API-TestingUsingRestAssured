@@ -1,0 +1,12 @@
+{
+ "id": "544",
+  "name":"Bill",
+  "active": true,
+  "yearsOld": 12,
+  "color": "Yellow",
+  "gradesArr": [
+      4,
+      5,
+      7
+     ]
+}
