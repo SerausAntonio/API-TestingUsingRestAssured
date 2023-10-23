@@ -19,13 +19,25 @@ public class Students {
                 .statusCode(201);
     }
     @Test
-    public void getStudents() {
+    public void getStudent() {
         //GET
         given()
            .when()
-             .get("http://localhost:3000/students")
+             .get("http://localhost:3000/students/303")
           .then()
+              .assertThat()
               .statusCode(200)
+              .body("name",equalTo("Stephany"))
+          .log().all();
+    }
+    @Test
+    public void getStudents() {
+        //GET
+        given()
+          .when()
+             .get("http://localhost:3000/students/")
+          .then()
+             .statusCode(200)
           .log().all();
     }
     @Test
@@ -38,11 +50,13 @@ public class Students {
         given()
                 .contentType("application/json")
                 .body(data)
+
                 .when()
-                .post("http://localhost:3000/students")
+                  .post("http://localhost:3000/students")
+
                 .then()
                 .assertThat()
-                .statusCode(201)
+                    .statusCode(201)
                 .log().all();
     }
     @Test
