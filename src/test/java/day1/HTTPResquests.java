@@ -10,6 +10,15 @@ import static org.hamcrest.Matchers.equalTo;
 public class HTTPResquests {
     int ID;
 
+    @Test(priority =0)
+    public void healthCheck(){
+        given()
+                .when()
+                  .get("https://reqres.in/api/ping")
+                .then()
+                  .assertThat()
+                  .statusCode(200);
+    }
     @Test(priority = 1)
     public void getUser() {
 

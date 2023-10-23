@@ -78,10 +78,28 @@ public class Students {
                 .log().all();
     }
     @Test(priority = 6)
+    public void upDateStudentName(){
+        //PUT
+        HashMap data = new HashMap();
+        data.put("title","Cinema");
+
+        given()
+                .contentType("application/json")
+                .body(data)
+
+                .when()
+                    .patch("http://localhost:3000/students/1")
+                .then()
+                   .assertThat()
+                   .statusCode(200)
+                .log().all();
+    }
+    @Test(priority = 7)
     public void deleteStudent(){
         //DELETE
         given()
                 .contentType("application/json")
+
                 .when()
                      .delete("http://localhost:3000/students/1")
                 .then()
