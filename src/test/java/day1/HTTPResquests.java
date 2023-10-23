@@ -8,8 +8,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class HTTPResquests {
-
-    int ID = 0;
+    int ID;
 
     @Test(priority = 1)
     public void getUser() {
@@ -20,9 +19,7 @@ public class HTTPResquests {
                 .then().statusCode(200)
                 .body("data.id", equalTo(2))
                 .log().all();
-
     }
-
     @Test(priority = 2)
     public void getListOfUsers() {
 
@@ -41,9 +38,9 @@ public class HTTPResquests {
                 .when()
                 .get("https://reqres.in/api/users/23")
                 .then()
-                .statusCode(404);
+                .statusCode(404)
+            .log().all();
     }
-
     @Test(priority = 4)
     public void listResource() {
 
@@ -55,7 +52,6 @@ public class HTTPResquests {
                 .body("page", equalTo(1))
                 .log().all();
     }
-
     @Test(priority = 5)
     public void singleResource() {
         given()
@@ -66,7 +62,6 @@ public class HTTPResquests {
                 .body("data.id", equalTo(2))
                 .log().all();
     }
-
     @Test(priority = 6)
     public void createUser() {
         HashMap data = new HashMap();
@@ -84,8 +79,6 @@ public class HTTPResquests {
     }
 
     public class CreateAndUpdateUser {
-        int ID;
-
         @Test(priority = 7)
         public void createuser() {
 
@@ -118,8 +111,7 @@ public class HTTPResquests {
                     .then()
                     .statusCode(200)
                     .log().all();
-
-        }
+       }
 
     }
 }
